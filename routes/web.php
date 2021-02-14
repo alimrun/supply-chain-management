@@ -16,4 +16,17 @@ Route::group(['namespace'=>'Company','prefix'=>'company','as'=>'company.'], func
         Route::post('login','LoginController@submit');
         Route::post('logout','LoginController@logout')->name('logout');
     });
+
+    Route::group(['middleware'=>'company'], function () {
+        Route::get('dashboard','DashboardController@dashboard')->name('dashboard');
+    });
+});
+
+
+Route::group(['namespace'=>'Supplier','prefix'=>'supplier','as'=>'supplier.'], function () {
+    Route::group(['namespace'=>'Auth','prefix'=>'auth','as'=>'auth.'], function () {
+        Route::get('login','LoginController@login')->name('login');
+        Route::post('login','LoginController@submit');
+        Route::post('logout','LoginController@logout')->name('logout');
+    });
 });
